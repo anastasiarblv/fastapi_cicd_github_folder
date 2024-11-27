@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment # название нашего развертывания
+spec:
+  replicas: 2 # хотим подключиться 2 раза
+  selector:
+    matchLabels:
+      app: fastapi-app # название нашего приложения fast api
+  template:
+    metadata:
+      labels:
+        app: fastapi-app
+    spec:
+      containers:
+      - name: fastapi-container # имя контейнера в докере
+        image: rublevaae/my-fastapi-app:latest # наше логин в DockerHub/image нашего контейнера
+        ports:
+        - containerPort: 8000 #  порт нашего контейнера
